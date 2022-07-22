@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="list-container">
+    <div class="list-active">
+      <div>
+        <mat-toolbar class="footer" color="primary">
+          <span class="align-center">ACTIVE</span>
+        </mat-toolbar>
+        <app-itemcountlist [itemsList]="itemCountsActive"></app-itemcountlist>
+      </div>
+      <ng-container *ngFor="let item of (ItemList$ |  async);index as i">
+        <app-item *ngIf="item?.isActive" [item]="item" (ItemActionEvent)="applyActionOnItem($event)"></app-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+      <div class="subtotal-active">
+        <mat-toolbar class="footer">
+          <span class="align-center">Sub Total = {{activeItemSubTotal}}</span>
+        </mat-toolbar>
+      </div>
+    </div>
+    <div class="list-deleted">
+      <div>
+        <mat-toolbar class="footer" color="primary">
+          <span class="align-center">DELETED</span>
+        </mat-toolbar>
+        <app-itemcountlist [itemsList]="itemCountsDeleted"></app-itemcountlist>
+      </div>
+      <ng-container *ngFor="let item of (ItemList$ |  async);index as i">
+        <app-item *ngIf="!item?.isActive" [item]="item" (ItemActionEvent)="applyActionOnItem($event)"></app-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+      <div class="subtotal-deleted">
+        <mat-toolbar class="footer">
+          <span class="align-center">Sub Total = {{deletedItemSubTotal}}</span>
+        </mat-toolbar>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-footer [grandTotal]="grandTotal"></app-footer>
+  </div>
+</div>

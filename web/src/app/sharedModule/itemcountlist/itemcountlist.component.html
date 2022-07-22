@@ -1,0 +1,5 @@
+<div>
+  <span *ngFor="let item of itemsList| keyvalue; let last = last;">
+    <b>{{item.key}} :{{item.value}}<span *ngIf="!last">, </span></b>
+  </span>
+</div>

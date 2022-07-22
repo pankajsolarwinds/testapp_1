@@ -1,0 +1,13 @@
+<mat-card class="card-wrapper">
+  <mat-card-title>{{item?.name || item?.brand}}</mat-card-title>
+  <mat-card-subtitle>
+    <p>Type:  {{item?.type}}</p>
+    <p>Brand: {{item?.brand}}</p>
+    <p>Model: {{item?.model}}</p>
+    <p>Price: {{item?.price}}</p>
+  </mat-card-subtitle>
+  <mat-card-actions align="end">
+    <button mat-button *ngIf="item?.isActive" (click)="doDelete(item)">Deleted</button>
+    <button mat-button *ngIf="!item?.isActive" (click)="doRestore(item)">Restore</button>
+  </mat-card-actions>
+</mat-card>
